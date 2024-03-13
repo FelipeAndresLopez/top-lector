@@ -1,0 +1,23 @@
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  min-height: 80px;
+}
+
+li img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+li div {
+  padding: 10px;
+
+  border-left: 1px solid #ccc;
+}
