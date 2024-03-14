@@ -1,0 +1,17 @@
+header {
+  width: 100%;
+}
+
+header nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: end;
+}
+
+header nav ul li {
+  padding: 10px;
+  list-style: none;
+}
