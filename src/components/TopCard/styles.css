@@ -1,23 +1,25 @@
-ul {
-  padding: 0;
-}
-
-li {
-  list-style: none;
+li.home__top-card {
   display: flex;
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+  padding: 5px 0 5px 0;
   align-items: center;
-  border: 1px solid #ccc;
-  min-height: 80px;
 }
 
-li img {
-  width: 100px;
-  height: 100px;
+li.home__top-card:first-child {
+  border-top: 1px solid #ccc;
+}
+
+.home__top-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   object-fit: cover;
+  aspect-ratio: 1;
 }
 
-li div {
+.home__top-card div {
+  flex-grow: 1;
   padding: 10px;
-
-  border-left: 1px solid #ccc;
+  text-align: right;
 }
