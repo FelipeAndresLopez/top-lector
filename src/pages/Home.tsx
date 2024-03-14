@@ -1,26 +1,18 @@
-import { useEffect, useState } from "react";
-import { TopCard } from "../components/TopCard/TopCard";
+import { TopCard } from '../components/TopCard/TopCard'
+import { useTopReaders } from '../hooks/useTopReaders'
+import './styles.css'
 
-
-const USERS_API = 'https://65f217a6034bdbecc76459d6.mockapi.io/api/v1/users';
-
-export const Home = () => {
-
-  const [users, setUsers] = useState([])
-
-  useEffect(() => {
-    fetch(USERS_API)
-      .then(response => response.json())
-      .then(data => setUsers(data))
-  })
-
+export const Home: React.FC = () => {
+  const { topReaders } = useTopReaders()
   return (
-    <div>
+    <div className='home'>
       <h1>Top Lector</h1>
-
-      <ul>
-        {users.map(user =>
-          <TopCard key={user.id} user={user} />
+      <ul className='home__top-readers'>
+        {topReaders.map(reader =>
+          <TopCard
+            key={reader.id}
+            reader={reader}
+          />
         )}
       </ul>
     </div>
