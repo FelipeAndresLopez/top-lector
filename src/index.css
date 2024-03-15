@@ -7,6 +7,18 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --primary-color: #009688;
+  --primary-light-color: #33ab9f;
+  --primary-dark-color: #00695f;
+
+  --secondary-color: #ff3d00;
+  --secondary-light-color: #ff6333;
+  --secondary-dark-color: #b22a00;
+
+  --neutral-color: #546E7A;
+  --neutral-light-color: #607d8b;
+  --border-color: #B0BEC5;
 }
 
 html {
@@ -17,19 +29,18 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  padding: 30px;
 }
 
 h1 {
   line-height: 1.1;
   text-align: center;
-  color: #009688;
+  color: var(--primary-color);
 }
 
 
 h2 {
   margin: 0;
-  color: #455a64;
+  color: var(--neutral-color);
 }
 
 button {
@@ -66,5 +77,5 @@ p {
 }
 
 p strong {
-  color: #455a64;
+  color: var(--neutral-color);
 }

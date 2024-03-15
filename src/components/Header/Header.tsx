@@ -16,9 +16,10 @@ const menuItems = [
   }
 ]
 
-export const Header = () => {
+export const Header: React.FC = () => {
   return (
     <header>
+      <div />
       <nav>
         <ul>
           {menuItems.map(item =>

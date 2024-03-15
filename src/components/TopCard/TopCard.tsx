@@ -8,7 +8,7 @@ interface Props {
 
 export const TopCard: React.FC<Props> = ({
   reader: { id, name, avatar, readBooks, lastReadBook },
-  className
+  className = ''
 }) => {
   return (
     <li className={`home__top-card ${className}`} key={id}>

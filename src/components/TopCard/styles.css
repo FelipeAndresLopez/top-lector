@@ -1,13 +1,13 @@
 li.home__top-card {
   display: flex;
   list-style: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color);
   padding: 5px 0 5px 0;
   align-items: center;
 }
 
 li.home__top-card:first-child {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--border-color);
 }
 
 .home__top-card img {
@@ -22,4 +22,8 @@ li.home__top-card:first-child {
   flex-grow: 1;
   padding: 10px;
   text-align: right;
+}
+
+.home__top-card div p {
+  color: var(--neutral-light-color)
 }
