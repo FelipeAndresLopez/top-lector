@@ -1,12 +1,16 @@
-.top-card {
+li.book-card {
   display: flex;
   list-style: none;
-  padding: 5px 20px;
+  border-bottom: 1px solid var(--border-color);
+  padding: 5px 0 5px 0;
   align-items: center;
+}
+
+li.book-card:first-child {
   border-top: 1px solid var(--border-color);
 }
 
-.top-card img {
+.book-card img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -14,16 +18,16 @@
   aspect-ratio: 1;
 }
 
-.top-card div {
+.book-card div {
   flex-grow: 1;
   padding: 10px;
   text-align: left;
 }
 
-.top-card div p {
+.book-card div p {
   color: var(--neutral-color)
 }
 
-.top-card div p strong {
+.book-card div small {
   color: var(--primary-color)
 }

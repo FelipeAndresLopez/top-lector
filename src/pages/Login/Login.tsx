@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Container } from '../../components/Container/Container'
 
 import './styles.css'
-import { MENU_PATHS } from '../../Const/const'
+import { MENU_PATHS } from '../../const/const'
 
 export const Login: React.FC = () => {
   return (

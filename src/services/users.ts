@@ -1,10 +1,11 @@
+import { API } from '../const/const'
 import { type TopReader } from '../type'
 
-const API = 'https://65f217a6034bdbecc76459d6.mockapi.io/api/v1/users'
+const USERS_ENDPOINT = 'users'
 
 export const getTopReaders: () => Promise<TopReader[]> = async () => {
   try {
-    const response = await fetch(API)
+    const response = await fetch(`${API}${USERS_ENDPOINT}`)
     const data = await response.json()
 
     return data

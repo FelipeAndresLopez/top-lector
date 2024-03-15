@@ -18,3 +18,5 @@ export const MENU_ITEMS = [
     path: MENU_PATHS.REGISTER
   }
 ]
+
+export const API = 'https://65f217a6034bdbecc76459d6.mockapi.io/api/v1/'

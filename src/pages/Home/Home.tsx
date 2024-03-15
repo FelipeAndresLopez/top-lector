@@ -8,7 +8,7 @@ export const Home: React.FC = () => {
   return (
     <Container>
       <h1>Top Lector</h1>
-      <ul className='home__top-readers'>
+      <ul className='home'>
         {topReaders.map(reader =>
           <TopCard
             key={reader.id}

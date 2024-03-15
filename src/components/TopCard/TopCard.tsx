@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { type TopReader } from '../../type'
 import './styles.css'
 
@@ -11,13 +12,15 @@ export const TopCard: React.FC<Props> = ({
   className = ''
 }) => {
   return (
-    <li className={`home__top-card ${className}`} key={id}>
-      <img src={avatar} alt="user avatar" />
-      <div>
-        <h2>{name}</h2>
-        <p><strong>Leidos:</strong>{readBooks}</p>
-        <p><strong>Último libro leído:</strong> {lastReadBook}</p>
-      </div>
-    </li>
+    <Link to={`/${id}`}>
+      <li className={`top-card ${className}`} key={id}>
+        <img src={avatar} alt="user avatar" />
+        <div>
+          <h2>{name}</h2>
+          <p>Leidos: <strong>{readBooks}</strong></p>
+          <p>Último libro leído: <strong>{lastReadBook}</strong></p>
+        </div>
+      </li>
+    </Link>
   )
 }
