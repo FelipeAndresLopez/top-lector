@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom'
 import { App } from '../App.tsx'
 import { NotFound } from '../pages/NotFound/NotFound.tsx'
 import { Home } from '../pages/Home/Home.tsx'
+import { Login } from '../pages/Login/Login.tsx'
+import { Register } from '../pages/Register/Register.tsx'
 
 export const router = createBrowserRouter([
   {
@@ -15,11 +17,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <div>Login</div>
+        element: <Login />
       },
       {
         path: 'register',
-        element: <div>Register</div>
+        element: <Register />
       }
     ]
   }

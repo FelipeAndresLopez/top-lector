@@ -1,20 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import './styles.css'
-
-const menuItems = [
-  {
-    name: 'Home',
-    path: '/'
-  },
-  {
-    name: 'Iniciar Sesión',
-    path: '/login'
-  },
-  {
-    name: 'Registrarse',
-    path: '/register'
-  }
-]
+import { MENU_ITEMS } from '../../Const/const'
 
 export const Header: React.FC = () => {
   return (
@@ -22,7 +8,7 @@ export const Header: React.FC = () => {
       <div />
       <nav>
         <ul>
-          {menuItems.map(item =>
+          {MENU_ITEMS.map(item =>
             <li key={item.path}>
               <NavLink
                 to={item.path}
