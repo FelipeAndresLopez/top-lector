@@ -32,6 +32,6 @@ header nav ul li a {
 }
 
 header nav ul .active {
-  border-bottom: 3px solid var(--primary-dark-color);
+  border-bottom: 2px solid white;
   font-weight: bold;
 }

@@ -1,15 +1,20 @@
-import { type ErrorResponse, useRouteError } from 'react-router-dom'
+import { type ErrorResponse, useRouteError, Link } from 'react-router-dom'
+import { Container } from '../../components/Container/Container'
+import { MENU_PATHS } from '../../Const/const'
 
 export const NotFound: React.FC = () => {
   const error: ErrorResponse = useRouteError() as ErrorResponse
 
   return (
-    <div id="error-page">
+    <Container>
       <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
+      <p>Parece que la página que estás buscando no existe.</p>
       <p>
-        <i>{error.statusText}</i>
+        <i>Error: {error.statusText}</i>
       </p>
-    </div>
+      <button className='primary__button'>
+        <Link to={MENU_PATHS.HOME}>Volver al inicio</Link>
+      </button>
+    </Container>
   )
 }
