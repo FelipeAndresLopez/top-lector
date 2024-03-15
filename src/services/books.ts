@@ -1,8 +1,9 @@
 import { API } from '../const'
+import { type Book } from '../type'
 
 const BOOKS_ENDPOINT = 'books'
 
-export const getBooksByUser = async ({ userId }) => {
+export const getBooksByUser: ({ userId }: { userId: string }) => Promise<Book[]> = async ({ userId }: { userId: string }) => {
   console.log(userId)
   try {
     const response = await fetch(`${API}${BOOKS_ENDPOINT}`)
