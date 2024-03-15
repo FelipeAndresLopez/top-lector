@@ -6,7 +6,7 @@ import { BookCard } from '../../components/BookCard/BookCard'
 import './styles.css'
 
 export const TopReaderDetail: React.FC = () => {
-  const { id: userId } = useParams()
+  const { id: userId = '' } = useParams()
   console.log(userId)
   const { booksByUser } = useBooksByUser({ userId })
 

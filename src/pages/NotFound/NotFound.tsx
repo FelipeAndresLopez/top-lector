@@ -1,6 +1,6 @@
 import { type ErrorResponse, useRouteError, Link } from 'react-router-dom'
 import { Container } from '../../components/Container/Container'
-import { MENU_PATHS } from '../../const/const'
+import { MENU_PATHS } from '../../const'
 
 export const NotFound: React.FC = () => {
   const error: ErrorResponse = useRouteError() as ErrorResponse

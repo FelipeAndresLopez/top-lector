@@ -1,4 +1,4 @@
-import { API } from '../const/const'
+import { API } from '../const'
 
 const BOOKS_ENDPOINT = 'books'
 

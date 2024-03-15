@@ -1,6 +1,12 @@
+import { type Book } from '../../type'
 import './styles.css'
 
-export const BookCard: React.FC = ({
+interface Props {
+  book: Book
+  className?: string
+}
+
+export const BookCard: React.FC<Props> = ({
   book: { id, title, cover, author, rate, comment },
   className = ''
 }) => {

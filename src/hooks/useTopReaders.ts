@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getTopReaders } from '../services/users'
-import { type TopReader } from '../type'
+import { type TopReader, type Book } from '../type'
 import { getBooksByUser } from '../services/books'
 
 export const useTopReaders = (): { topReaders: TopReader[] } => {
@@ -19,12 +19,12 @@ export const useTopReaders = (): { topReaders: TopReader[] } => {
   return { topReaders }
 }
 
-export const useBooksByUser = ({ userId }: { userId: string }) => {
-  const [booksByUser, setBooksByUser] = useState([])
+export const useBooksByUser = ({ userId }: { userId: string }): { booksByUser: Book[] } => {
+  const [booksByUser, setBooksByUser] = useState<Book[]>([])
 
   useEffect(() => {
     getBooksByUser({ userId })
-      .then((data) => {
+      .then((data: Book[]) => {
         setBooksByUser(data)
       })
       .catch(error => {

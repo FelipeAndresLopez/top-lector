@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import './styles.css'
-import { MENU_ITEMS } from '../../const/const'
+import { MENU_ITEMS } from '../../const.ts'
 
 export const Header: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Container } from '../../components/Container/Container'
-import { MENU_PATHS } from '../../const/const'
+import { MENU_PATHS } from '../../const'
 
 export const Register: React.FC = () => {
   return (

@@ -1,4 +1,4 @@
-import { API } from '../const/const'
+import { API } from '../const'
 import { type TopReader } from '../type'
 
 const USERS_ENDPOINT = 'users'
