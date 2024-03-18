@@ -1,7 +1,9 @@
 export const MENU_PATHS = {
   HOME: '/',
   LOGIN: '/login',
-  REGISTER: '/register'
+  REGISTER: '/register',
+  MY_PROFILE: '/mi-perfil',
+  REGISTER_BOOK: '/registrar-libro'
 }
 
 export const MENU_ITEMS = [

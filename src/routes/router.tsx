@@ -5,6 +5,9 @@ import { Home } from '../pages/Home/Home.tsx'
 import { Login } from '../pages/Login/Login.tsx'
 import { Register } from '../pages/Register/Register.tsx'
 import { TopReaderDetail } from '../pages/TopReaderDetail/TopReaderDetail.tsx'
+import { MyProfile } from '../pages/MyProfile/MyProfile.tsx'
+import { PrivateRoute } from '../components/PrivateRoute/PrivateRoute.tsx'
+import { RegisterBook } from '../pages/RegisterBook/RegisterBook.tsx'
 
 export const router = createHashRouter([
   {
@@ -29,5 +32,15 @@ export const router = createHashRouter([
         element: <Register />
       }
     ]
+  },
+
+  {
+    path: '/mi-perfil',
+    element: <PrivateRoute component={MyProfile} />
+  },
+
+  {
+    path: '/registrar-libro',
+    element: <PrivateRoute component={RegisterBook} />
   }
 ])
