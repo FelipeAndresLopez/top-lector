@@ -3,11 +3,12 @@ import { App } from '../App.tsx'
 import { NotFound } from '../pages/NotFound/NotFound.tsx'
 import { Home } from '../pages/Home/Home.tsx'
 import { Login } from '../pages/Login/Login.tsx'
-import { Register } from '../pages/Register/Register.tsx'
+import { RegisterUser } from '../pages/RegisterUser/RegisterUser.tsx'
 import { TopReaderDetail } from '../pages/TopReaderDetail/TopReaderDetail.tsx'
 import { MyProfile } from '../pages/MyProfile/MyProfile.tsx'
 import { PrivateRoute } from '../components/PrivateRoute/PrivateRoute.tsx'
 import { RegisterBook } from '../pages/RegisterBook/RegisterBook.tsx'
+import { MENU_PATHS } from '../const.ts'
 
 export const router = createHashRouter([
   {
@@ -24,12 +25,12 @@ export const router = createHashRouter([
         element: <TopReaderDetail />
       },
       {
-        path: 'login',
+        path: MENU_PATHS.LOGIN,
         element: <Login />
       },
       {
-        path: 'register',
-        element: <Register />
+        path: MENU_PATHS.REGISTER_USER,
+        element: <RegisterUser />
       }
     ]
   },

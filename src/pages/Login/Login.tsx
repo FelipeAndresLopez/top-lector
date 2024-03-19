@@ -50,7 +50,7 @@ export const Login: React.FC = () => {
           <button className='primary__button' type="submit">Iniciar Sesión</button>
           <label>
             <p>¿No tienes cuenta?</p>
-            <Link to={MENU_PATHS.REGISTER}>Regístrate</Link>
+            <Link to={MENU_PATHS.REGISTER_USER}>Regístrate</Link>
           </label>
         </form>
 

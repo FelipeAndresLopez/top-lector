@@ -1,7 +1,7 @@
 export const MENU_PATHS = {
   HOME: '/',
-  LOGIN: '/login',
-  REGISTER: '/register',
+  LOGIN: '/iniciar-sesion',
+  REGISTER_USER: '/registrar-usuario',
   MY_PROFILE: '/mi-perfil',
   REGISTER_BOOK: '/registrar-libro'
 }
@@ -17,7 +17,7 @@ export const MENU_ITEMS = [
   },
   {
     name: 'Registrarse',
-    path: MENU_PATHS.REGISTER
+    path: MENU_PATHS.REGISTER_USER
   }
 ]
 
