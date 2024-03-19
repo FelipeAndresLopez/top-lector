@@ -23,6 +23,7 @@ export const router = createHashRouter([
       {
         path: '/:id',
         element: <TopReaderDetail />
+
       },
       {
         path: MENU_PATHS.LOGIN,

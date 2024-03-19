@@ -1,39 +1,29 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Container } from '../../components/Container/Container'
 import { MENU_PATHS } from '../../const'
-import { useEffect, useState } from 'react'
 import { useBooksByUser } from '../../hooks/useTopReaders'
 import { BookCard } from '../../components/BookCard/BookCard'
+
+import placeholderImage from '../../assets/profile-placeholder.png'
 
 import './styles.css'
 
 export const MyProfile: React.FC = () => {
-  const email = JSON.parse(localStorage.getItem('user'))?.email || ''
-  console.log(email)
-  const [isLoading, setIsLoading] = useState(false)
+  const email = JSON.parse(localStorage.getItem('user') ?? '')?.email
   const { booksByUser } = useBooksByUser({ userId: '1' })
 
   const navigate = useNavigate()
-  useEffect(() => {
-    if (!localStorage.getItem('user') && isLoading) {
-      navigate(MENU_PATHS.HOME)
-    }
-  }, [localStorage, isLoading])
 
-  const handleLogout = () => {
+  const handleLogout = (): void => {
     localStorage.removeItem('user')
-    setIsLoading(true)
-  }
-
-  const handleBookCreation = () => {
-
+    navigate(MENU_PATHS.HOME)
   }
 
   return (
     <Container className='my-profile'>
       <div className='my-profile'>
         <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          src={placeholderImage}
           alt="user avatar"
         />
         <h1>{email}</h1>
@@ -45,7 +35,14 @@ export const MyProfile: React.FC = () => {
           <BookCard
             key={book.id}
             book={book}
-          />
+          >
+            <button
+              className='icon-button'
+              type='button'
+            >
+              🗑️
+            </button>
+          </BookCard>
         )}
       </ul>
 

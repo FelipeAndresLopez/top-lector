@@ -21,4 +21,12 @@ export const MENU_ITEMS = [
   }
 ]
 
-export const API = 'https://65f217a6034bdbecc76459d6.mockapi.io/api/v1/'
+export const API_URL = 'https://65f217a6034bdbecc76459d6.mockapi.io/api/v1/'
+
+export const RATING = {
+  WORST: { value: '1', label: '😔' },
+  BAD: { value: '2', label: '😕' },
+  NORMAL: { value: '3', label: '😐' },
+  GOOD: { value: '4', label: '🤩' },
+  BEST: { value: '5', label: '🤯' }
+}

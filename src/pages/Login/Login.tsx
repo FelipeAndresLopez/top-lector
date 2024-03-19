@@ -22,10 +22,7 @@ export const Login: React.FC = () => {
     setIsLoading(true)
     event.preventDefault()
     const formData = new FormData(event.target)
-    const userCredentials = {
-      email: formData.get('email'),
-      password: formData.get('password')
-    }
+    const userCredentials = Object.fromEntries(formData)
     // TODO: call endpoint for login
     console.log(userCredentials)
     localStorage.setItem('user', JSON.stringify(userCredentials))
@@ -41,13 +38,13 @@ export const Login: React.FC = () => {
         <form onSubmit={login}>
           <label>
             <p>Correo</p>
-            <input type="email" required autoComplete='email' name="email" autoFocus />
+            <input type="email" required autoComplete='email' name="email" />
           </label>
           <label>
             <p>Contraseña</p>
             <input type="password" required autoComplete='current-password' name="password" />
           </label>
-          <button className='primary__button' type="submit">Iniciar Sesión</button>
+          <button className='button btn-primary' type="submit">Iniciar Sesión</button>
           <label>
             <p>¿No tienes cuenta?</p>
             <Link to={MENU_PATHS.REGISTER_USER}>Regístrate</Link>

@@ -17,7 +17,7 @@
   --secondary-dark-color: #b22a00;
 
   --neutral-color: #546E7A;
-  --neutral-light-color: #eee;
+  --neutral-light-color: #78909C;
   --border-color: #B0BEC5;
 }
 
@@ -56,26 +56,55 @@ form {
   }
 }
 
-form input {
+form input:not([type="range"]),
+textarea {
   padding: 10px;
   width: -webkit-fill-available;
   border: 1px solid var(--border-color);
   border-radius: 5px;
 }
 
-button.primary__button {
+button.button {
   margin-top: 10px;
   width: 100%;
   padding: 10px;
   border-radius: 5px;
-  background-color: var(--primary-light-color);
-  color: white;
-  border: 1px solid var(--primary-light-color);
   font-size: medium;
   font-weight: bold;
+  cursor: pointer;
 
   & a {
     color: white;
+  }
+
+  &.btn-primary {
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    color: white;
+
+    &:hover {
+      border: 1px solid var(--primary-light-color);
+      background-color: var(--primary-light-color);
+    }
+  }
+
+
+  &.btn-secondary {
+    background-color: var(--border-color);
+    border: 1px solid var(--border-color);
+    color: white;
+
+    &:hover {
+      background-color: var(--neutral-light-color);
+      border: 1px solid var(--neutral-light-color);
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    max-width: 10rem;
+    margin: 0 auto;
   }
 }
 
@@ -109,6 +138,20 @@ a {
   cursor: pointer;
   font-size: medium;
   text-decoration: underline;
+}
+
+.icon-button {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: medium;
+
+  &:hover {
+    border: 1px solid var(--primary-light-color);
+    border-radius: 5px;
+  }
 }
 
 .float-button {

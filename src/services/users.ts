@@ -1,11 +1,11 @@
-import { API } from '../const'
+import { API_URL } from '../const'
 import { type TopReader } from '../type'
 
 const USERS_ENDPOINT = 'users'
 
 export const getTopReaders: () => Promise<TopReader[]> = async () => {
   try {
-    const response = await fetch(`${API}${USERS_ENDPOINT}`)
+    const response = await fetch(`${API_URL}${USERS_ENDPOINT}`)
     const data = await response.json()
 
     return data
