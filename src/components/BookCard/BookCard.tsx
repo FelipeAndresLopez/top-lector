@@ -8,18 +8,19 @@ interface Props {
 }
 
 export const BookCard: React.FC<Props> = ({
-  book: { id, title, cover, author, rate, comment },
+  book: { id, title, cover, author, rating, userComment },
   className = '',
   children
 }) => {
   return (
     <li className={`book-card ${className}`} key={id}>
-      <img src={cover} alt="user avatar" />
+      <img src="https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png" alt="user avatar" />
+
       <div>
         <h2>{title}</h2>
         <p>{author}</p>
-        <small>{'★'.repeat(rate)}</small>
-        <p>{comment}</p>
+        <small>{'★'.repeat(rating)}</small>
+        <p>{userComment}</p>
       </div>
       {children}
     </li>

@@ -21,7 +21,7 @@ export const MENU_ITEMS = [
   }
 ]
 
-export const API_URL = 'https://65f217a6034bdbecc76459d6.mockapi.io/api/v1/'
+export const API_URL = 'http://localhost:3001/api/'
 
 export const RATING = {
   WORST: { value: '1', label: '😔' },

@@ -1,9 +1,8 @@
 export interface TopReader {
   id: number
   name: string
-  avatar: string
-  readBooks: number
-  lastReadBook: string
+  photo: string
+  books: Book[]
 }
 
 export interface Book {
@@ -11,6 +10,6 @@ export interface Book {
   title: string
   cover: string
   author: string
-  rate: number
-  comment: string
+  rating: number
+  userComment: string
 }
