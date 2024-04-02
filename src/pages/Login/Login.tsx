@@ -3,19 +3,42 @@ import { Container } from '../../components/Container/Container'
 
 import './styles.css'
 import { MENU_PATHS } from '../../const'
-import { type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
+import { loginService } from '../../services/login'
+import { setSessionToken } from '../../services/books'
+import { userService } from '../../services/users'
 
 export const Login: React.FC = () => {
+  const [notification, setNotification] = useState(null)
   const navigate = useNavigate()
 
-  const handleLogin = (event: FormEvent<HTMLFormElement>): void => {
+  const handleLogin = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     const formData = new FormData(event.target as HTMLFormElement)
     const userCredentials = Object.fromEntries(formData)
-    // TODO: call endpoint for login
-    console.log(userCredentials)
-    localStorage.setItem('user', JSON.stringify(userCredentials))
-    navigate(MENU_PATHS.MY_PROFILE)
+    const credentials = {
+      email: userCredentials.email as string,
+      password: userCredentials.password as string
+    }
+
+    try {
+      const response = await loginService.login(credentials)
+      if (response.error) {
+        setNotification({
+          message: response.error,
+          type: 'error'
+        })
+      } else {
+        setSessionToken(response.token)
+        window.localStorage.setItem('loggedUserTopLectorApp', JSON.stringify(response))
+        navigate(MENU_PATHS.MY_PROFILE)
+      }
+      setTimeout(() => {
+        setNotification(null)
+      }, 5000)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -32,6 +55,7 @@ export const Login: React.FC = () => {
             <p>Contraseña</p>
             <input type="password" required autoComplete='current-password' name="password" />
           </label>
+          {notification !== null && <small className={notification.type}>{notification.message}</small>}
           <button className='button btn-primary' type="submit">Iniciar Sesión</button>
           <label>
             <p>¿No tienes cuenta?</p>

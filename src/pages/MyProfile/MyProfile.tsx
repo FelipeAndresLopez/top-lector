@@ -7,15 +7,17 @@ import { BookCard } from '../../components/BookCard/BookCard'
 import userPlaceholder from '../../assets/user-placeholder.png'
 
 import './styles.css'
+import { setSessionToken } from '../../services/books'
 
 export const MyProfile: React.FC = () => {
-  const email = JSON.parse(localStorage.getItem('user') ?? '')?.email
-  const { userInfo } = useGetUserInfo({ userId: '1' })
+  const { email, id } = JSON.parse(localStorage.getItem('loggedUserTopLectorApp') ?? '')
+  const { userInfo } = useGetUserInfo({ userId: id })
 
   const navigate = useNavigate()
 
   const handleLogout = (): void => {
-    localStorage.removeItem('user')
+    localStorage.removeItem('loggedUserTopLectorApp')
+    setSessionToken('')
     navigate(MENU_PATHS.HOME)
   }
 
@@ -23,10 +25,10 @@ export const MyProfile: React.FC = () => {
     <Container className='my-profile'>
       <div className='my-profile'>
         <img
-          src={userPlaceholder}
+          src={userInfo.photo !== '' ? userInfo.photo : userPlaceholder}
           alt="user avatar"
         />
-        <h1>{email}</h1>
+        <h1>{userInfo.name}</h1>
         <button className='link-button' type='button' onClick={handleLogout}>Cerrar sesión</button>
       </div>
       <h2>Mis Libros</h2>

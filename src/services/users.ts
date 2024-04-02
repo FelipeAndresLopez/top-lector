@@ -5,7 +5,7 @@ const USERS_ENDPOINT = 'users'
 
 const getUsers: () => Promise<User[]> = async () => {
   try {
-    const response = await fetch(`${BASE_URL}${USERS_ENDPOINT}`)
+    const response = await fetch(`${BASE_URL}/${USERS_ENDPOINT}`)
     const data = await response.json()
 
     return data
@@ -25,7 +25,7 @@ const createUser: ({ name, email, password, photo }: User) => Promise<User | Use
   photo
 }) => {
   try {
-    const response = await fetch(`${BASE_URL}${USERS_ENDPOINT}`, {
+    const response = await window.fetch(`${BASE_URL}/${USERS_ENDPOINT}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -46,10 +46,11 @@ const createUser: ({ name, email, password, photo }: User) => Promise<User | Use
 
 const getUserById = async ({ userId }: { userId: string }): Promise<User> => {
   try {
-    const response = await fetch(`${BASE_URL}${USERS_ENDPOINT}/${userId}`)
+    const response = await window.fetch(`${BASE_URL}/${USERS_ENDPOINT}/${userId}`)
     const data = await response.json()
     return data
   } catch (error) {
+    console.log(error)
     throw new Error('Error getting user')
   }
 }
