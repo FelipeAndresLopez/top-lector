@@ -27,3 +27,17 @@
 .top-card div p strong {
   color: var(--primary-color)
 }
+
+
+.top-card .avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--neutral-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  text-transform: uppercase;
+}

@@ -21,7 +21,7 @@ export const MENU_ITEMS = [
   }
 ]
 
-export const API_URL = 'http://localhost:3001/api/'
+export const BASE_URL = 'http://localhost:3001/api/'
 
 export const RATING = {
   WORST: { value: '1', label: '😔' },
@@ -30,3 +30,5 @@ export const RATING = {
   GOOD: { value: '4', label: '🤩' },
   BEST: { value: '5', label: '🤯' }
 }
+
+export const IMAGE_MAX_SIZE_IN_BYTES = 102_400

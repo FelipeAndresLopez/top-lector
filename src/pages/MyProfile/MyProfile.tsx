@@ -1,16 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Container } from '../../components/Container/Container'
 import { MENU_PATHS } from '../../const'
-import { useBooksByUser } from '../../hooks/useTopReaders'
+import { useGetUserInfo } from '../../hooks/useTopReaders'
 import { BookCard } from '../../components/BookCard/BookCard'
 
-import placeholderImage from '../../assets/profile-placeholder.png'
+import userPlaceholder from '../../assets/user-placeholder.png'
 
 import './styles.css'
 
 export const MyProfile: React.FC = () => {
   const email = JSON.parse(localStorage.getItem('user') ?? '')?.email
-  const { booksByUser } = useBooksByUser({ userId: '1' })
+  const { userInfo } = useGetUserInfo({ userId: '1' })
 
   const navigate = useNavigate()
 
@@ -23,7 +23,7 @@ export const MyProfile: React.FC = () => {
     <Container className='my-profile'>
       <div className='my-profile'>
         <img
-          src={placeholderImage}
+          src={userPlaceholder}
           alt="user avatar"
         />
         <h1>{email}</h1>
@@ -31,7 +31,7 @@ export const MyProfile: React.FC = () => {
       </div>
       <h2>Mis Libros</h2>
       <ul className=''>
-        {booksByUser.map(book =>
+        {userInfo.books.map(book =>
           <BookCard
             key={book.id}
             book={book}

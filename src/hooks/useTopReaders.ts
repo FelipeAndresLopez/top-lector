@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
-import { getTopReaders } from '../services/users'
-import { type TopReader, type Book } from '../type'
-import { getBooksByUser } from '../services/books'
+import { userService } from '../services/users'
+import { type User } from '../type'
 
-export const useTopReaders = (): { topReaders: TopReader[] } => {
-  const [topReaders, setTopReaders] = useState<TopReader[]>([])
+export const useGetTopReaders = (): { topReaders: User[] } => {
+  const [topReaders, setTopReaders] = useState<User[]>([])
 
   useEffect(() => {
-    getTopReaders()
-      .then((data: TopReader[]) => {
+    userService.getUsers()
+      .then((data: User[]) => {
         setTopReaders(data)
       })
       .catch(error => {
@@ -19,18 +18,25 @@ export const useTopReaders = (): { topReaders: TopReader[] } => {
   return { topReaders }
 }
 
-export const useBooksByUser = ({ userId }: { userId: string }): { booksByUser: Book[] } => {
-  const [booksByUser, setBooksByUser] = useState<Book[]>([])
+export const useGetUserInfo = ({ userId }: { userId: string }): { userInfo: User } => {
+  const [userInfo, setUserInfo] = useState<User>({
+    id: 0,
+    name: '',
+    email: '',
+    password: '',
+    photo: '',
+    books: []
+  })
 
   useEffect(() => {
-    getBooksByUser({ userId })
-      .then((data: Book[]) => {
-        setBooksByUser(data)
+    userService.getUserById({ userId })
+      .then((data: User) => {
+        setUserInfo(data)
       })
       .catch(error => {
-        throw new Error(`Error getting books ${error}`)
+        throw new Error(`Error getting user info ${error}`)
       })
   }, [])
 
-  return { booksByUser }
+  return { userInfo }
 }

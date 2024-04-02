@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { type TopReader } from '../../type'
+import { type User } from '../../type'
 import './styles.css'
 
 interface Props {
-  reader: TopReader
+  reader: User
   className?: string
 }
 
@@ -11,15 +11,19 @@ export const TopCard: React.FC<Props> = ({
   reader: { id, name, photo, books },
   className = ''
 }) => {
-  const latestReadBook = books.length > 0 ? books[books.length - 1] : ''
+  const latestReadBook = books[books.length - 1]
   return (
     <Link to={`/${id}`}>
       <li className={`top-card ${className}`} key={id}>
-        <img src={photo} alt="user photo" />
+        {
+          photo !== ''
+            ? <img src={photo} alt="user photo" />
+            : <span className='avatar-placeholder' >{name[0]}</span>
+        }
         <div>
           <h2>{name}</h2>
           <p>Leidos: <strong>{books.length}</strong></p>
-          <p>Último libro leído: <strong>{latestReadBook as string}</strong></p>
+          {latestReadBook !== undefined && <p>Último libro leído: <strong>{latestReadBook.title}</strong></p>}
         </div>
       </li>
     </Link>

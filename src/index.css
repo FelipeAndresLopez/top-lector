@@ -169,3 +169,11 @@ a {
   text-align: center;
   line-height: 50px;
 }
+
+form small.error {
+  color: var(--secondary-color);
+}
+
+form small.success {
+  color: var(--primary-color);
+}
