@@ -21,7 +21,7 @@ export const MENU_ITEMS = [
   }
 ]
 
-export const BASE_URL = 'http://localhost:3001/api'
+export const BASE_URL = import.meta.env.PROD ? 'https://top-lector-be.herokuapp.com/api' : 'http://localhost:3001/api'
 
 export const RATING = {
   WORST: { value: 1, label: '😔' },
