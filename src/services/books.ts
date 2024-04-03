@@ -3,20 +3,36 @@ import { type Book } from '../type'
 
 const BOOKS_ENDPOINT = 'books'
 
-let token = null
+let token: string | null = null
 
-export const setSessionToken = (newToken: string) => {
+const setSessionToken: (newToken: string) => void = (newToken: string) => {
   token = newToken
 }
 
-export const getBooksByUser: ({ userId }: { userId: string }) => Promise<Book[]> = async ({ userId }: { userId: string }) => {
-  console.log(userId)
-  try {
-    const response = await window.fetch(`${BASE_URL}/${BOOKS_ENDPOINT}`)
-    const data = await response.json()
+type RegisterBook = (book: Book) => Promise<Book>
 
+export const registerBook: RegisterBook = async ({ title, author, rating, userComment }) => {
+  token = JSON.parse(window.localStorage.getItem('loggedUserTopLectorApp') ?? '')?.token
+  try {
+    const response = await window.fetch(`${BASE_URL}/${BOOKS_ENDPOINT}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        title,
+        author,
+        rating,
+        userComment
+      })
+    })
+
+    const data = await response.json()
     return data
   } catch (error) {
-    throw new Error('Error getting top readers')
+    throw new Error('Error registering book')
   }
 }
+
+export const bookService = { registerBook, setSessionToken }

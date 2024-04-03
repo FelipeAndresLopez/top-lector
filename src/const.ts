@@ -24,11 +24,11 @@ export const MENU_ITEMS = [
 export const BASE_URL = 'http://localhost:3001/api'
 
 export const RATING = {
-  WORST: { value: '1', label: '😔' },
-  BAD: { value: '2', label: '😕' },
-  NORMAL: { value: '3', label: '😐' },
-  GOOD: { value: '4', label: '🤩' },
-  BEST: { value: '5', label: '🤯' }
+  WORST: { value: 1, label: '😔' },
+  BAD: { value: 2, label: '😕' },
+  NORMAL: { value: 3, label: '😐' },
+  GOOD: { value: 4, label: '🤩' },
+  BEST: { value: 5, label: '🤯' }
 }
 
 export const IMAGE_MAX_SIZE_IN_BYTES = 102_400

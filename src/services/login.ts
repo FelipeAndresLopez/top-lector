@@ -1,11 +1,9 @@
 import { BASE_URL, LOGIN_ENDPOINT } from '../const'
-import { type User } from '../type'
+import { type UserCredentials, type UserSession } from '../type'
 
-interface UserSession extends User {
-  token: string
-}
+type Login = (Props: UserCredentials) => Promise<UserSession>
 
-const login = async ({ email, password }: { email: string, password: string }): Promise<UserSession> => {
+const login: Login = async ({ email, password }) => {
   const response = await window.fetch(`${BASE_URL}/${LOGIN_ENDPOINT}`, {
     method: 'POST',
     headers: {

@@ -4,22 +4,54 @@ import { useNavigate } from 'react-router-dom'
 import { Container } from '../../components/Container/Container'
 import { RATING } from '../../const'
 import './styles.css'
+import { type Notification, type Book } from '../../type'
+import { bookService } from '../../services/books'
 
 export const RegisterBook: React.FC = () => {
   const navigate = useNavigate()
-  const [star, setStar] = useState(RATING.BEST)
-  const handleUserRegistration = (event: FormEvent<HTMLFormElement>): void => {
+  const [star, setStar] = useState(RATING.WORST)
+  const [notification, setNotification] = useState<Notification | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleBookRegistration = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
-    const formData = new FormData(event.target as HTMLFormElement)
-    const userData = Object.fromEntries(formData)
-    console.log(userData)
+    const target = event.target as HTMLFormElement
+    const formData = new FormData(target)
+    const bookData = Object.fromEntries(formData)
+    console.log(bookData)
+
+    const book: Book = {
+      title: bookData.title as string,
+      author: bookData.author as string,
+      rating: star.value,
+      userComment: bookData.userComment as string
+    }
+    setIsLoading(true)
+    const response = await bookService.registerBook(book)
+    if (response.error !== undefined) {
+      setNotification({
+        message: response.error,
+        type: 'error'
+      })
+    } else {
+      setNotification({
+        message: 'Libro registrado exitosamente',
+        type: 'success'
+      })
+      target.reset()
+    }
+
+    setTimeout(() => {
+      setNotification(null)
+    }, 5000)
+    setIsLoading(false)
   }
 
-  const handleRangeChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    const rate = event.target.value
+  const handleRatingChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const userRating = Number(event.target.value)
     const bookRating = Object
       .values(RATING)
-      .find(rating => rating.value === rate)
+      .find(rating => rating.value === userRating)
     setStar(bookRating ?? RATING.BEST)
   }
   return (
@@ -27,7 +59,7 @@ export const RegisterBook: React.FC = () => {
       <Container>
         <h1>Registro de Libros</h1>
         <div className='register-book'>
-          <form onSubmit={handleUserRegistration}>
+          <form onSubmit={handleBookRegistration}>
             <label>
               <p>Nombre del libro</p>
               <input type="text" required autoComplete='title' name="title" />
@@ -37,19 +69,21 @@ export const RegisterBook: React.FC = () => {
               <input type="text" required autoComplete='author' name="author" />
             </label>
             <label>
-              <p>🤯 ¿Que es lo que más te ha sorprendido del libro al leerlo?</p>
-              <textarea autoComplete='comment' name="comment" rows={5} />
+              <p>¿Cuál ha sido esa enseñanza que más te ha impactado 🤯?</p>
+              <textarea autoComplete='comment' name="userComment" rows={5} />
             </label>
             <label >
               <p>Calificación: {star.value}</p>
+
               <div className='rate'>
+                <span className='emoji-rate'>{star.label}</span>
                 <input
                   type="range"
                   list="markers"
                   min="1" max="5"
                   value={star.value}
                   name="rate"
-                  onChange={handleRangeChange}
+                  onChange={handleRatingChange}
                 />
                 <datalist id="markers">
                   <option value="1"></option>
@@ -58,9 +92,13 @@ export const RegisterBook: React.FC = () => {
                   <option value="4"></option>
                   <option value="5"></option>
                 </datalist>
-                <span className='emoji-rate'>{star.label}</span>
               </div>
             </label>
+            {
+              notification !== null &&
+              <small className={notification.type} >{notification.message}</small>
+            }
+            {isLoading && <p>Cargando...</p>}
             <button className='button btn-primary' type="submit">Registrar</button>
             <button
               className='button btn-secondary'

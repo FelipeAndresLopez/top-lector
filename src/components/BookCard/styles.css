@@ -10,11 +10,10 @@ li.book-card:first-child {
   border-top: 1px solid var(--border-color);
 }
 
-.book-card img {
+.book-card>img {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   aspect-ratio: 1;
 }
 

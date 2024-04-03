@@ -5,31 +5,31 @@ import './styles.css'
 import { MENU_PATHS } from '../../const'
 import { useState, type FormEvent } from 'react'
 import { loginService } from '../../services/login'
-import { setSessionToken } from '../../services/books'
-import { userService } from '../../services/users'
+import { bookService } from '../../services/books'
+import { type UserCredentials, type Notification } from '../../type'
 
 export const Login: React.FC = () => {
-  const [notification, setNotification] = useState(null)
+  const [notification, setNotification] = useState<Notification | null>(null)
   const navigate = useNavigate()
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     const formData = new FormData(event.target as HTMLFormElement)
     const userCredentials = Object.fromEntries(formData)
-    const credentials = {
-      email: userCredentials.email as string,
-      password: userCredentials.password as string
+    const credentials: UserCredentials = {
+      email: userCredentials.email,
+      password: userCredentials.password
     }
 
     try {
       const response = await loginService.login(credentials)
-      if (response.error) {
+      if (response.error !== undefined) {
         setNotification({
           message: response.error,
           type: 'error'
         })
       } else {
-        setSessionToken(response.token)
+        bookService.setSessionToken(response.token)
         window.localStorage.setItem('loggedUserTopLectorApp', JSON.stringify(response))
         navigate(MENU_PATHS.MY_PROFILE)
       }

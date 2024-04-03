@@ -1,5 +1,5 @@
 import { BASE_URL } from '../const'
-import { type User } from '../type'
+import { type UserId, type User } from '../type'
 
 const USERS_ENDPOINT = 'users'
 
@@ -14,16 +14,9 @@ const getUsers: () => Promise<User[]> = async () => {
   }
 }
 
-interface UserError {
-  error: string
-}
+type CreateUser = (user: User) => Promise<User>
 
-const createUser: ({ name, email, password, photo }: User) => Promise<User | UserError> = async ({
-  name,
-  email,
-  password,
-  photo
-}) => {
+const createUser: CreateUser = async ({ name, email, password, photo }) => {
   try {
     const response = await window.fetch(`${BASE_URL}/${USERS_ENDPOINT}`, {
       method: 'POST',
@@ -44,9 +37,11 @@ const createUser: ({ name, email, password, photo }: User) => Promise<User | Use
   }
 }
 
-const getUserById = async ({ userId }: { userId: string }): Promise<User> => {
+type GetUserById = ({ userId }: { userId: UserId }) => Promise<User>
+
+const getUserById: GetUserById = async ({ userId }) => {
   try {
-    const response = await window.fetch(`${BASE_URL}/${USERS_ENDPOINT}/${userId}`)
+    const response = await window.fetch(`${BASE_URL}/${USERS_ENDPOINT}/${String(userId)}`)
     const data = await response.json()
     return data
   } catch (error) {

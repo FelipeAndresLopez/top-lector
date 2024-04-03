@@ -7,17 +7,17 @@ import { BookCard } from '../../components/BookCard/BookCard'
 import userPlaceholder from '../../assets/user-placeholder.png'
 
 import './styles.css'
-import { setSessionToken } from '../../services/books'
+import { bookService } from '../../services/books'
 
 export const MyProfile: React.FC = () => {
-  const { email, id } = JSON.parse(localStorage.getItem('loggedUserTopLectorApp') ?? '')
+  const { id } = JSON.parse(localStorage.getItem('loggedUserTopLectorApp') ?? '')
   const { userInfo } = useGetUserInfo({ userId: id })
 
   const navigate = useNavigate()
 
   const handleLogout = (): void => {
     localStorage.removeItem('loggedUserTopLectorApp')
-    setSessionToken('')
+    bookService.setSessionToken('')
     navigate(MENU_PATHS.HOME)
   }
 

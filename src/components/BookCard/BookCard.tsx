@@ -14,7 +14,7 @@ export const BookCard: React.FC<Props> = ({
 }) => {
   return (
     <li className={`book-card ${className}`} key={id}>
-      <img src="https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png" alt="user avatar" />
+      <img src="https://www.marytribble.com/wp-content/uploads/2020/12/book-cover-placeholder.png" alt="user avatar" />
 
       <div>
         <h2>{title}</h2>

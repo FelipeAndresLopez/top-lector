@@ -15,7 +15,8 @@ export const RegisterUser: React.FC = () => {
   const handleUserRegistration = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     setNotification(null)
     event.preventDefault()
-    const formData = new FormData(event.target as HTMLFormElement)
+    const target = event.target as HTMLFormElement
+    const formData = new FormData(target)
     const userData = Object.fromEntries(formData)
     const imageFile = formData.get('image') as File
 
@@ -55,19 +56,19 @@ export const RegisterUser: React.FC = () => {
     }
     setIsLoading(true)
     const response = await userService.createUser(user)
-    if (response.error) {
+    if (response.error !== undefined) {
       setNotification({
         message: response.error,
         type: 'error'
       })
     } else {
       setNotification({
-        message: 'Usuario creado exitosamente',
+        message: 'Usuario registrado exitosamente',
         type: 'success'
       })
       setPassword('')
       setConfirmPassword('')
-      event.target.reset()
+      target.reset()
     }
 
     setTimeout(() => {
