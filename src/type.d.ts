@@ -30,6 +30,7 @@ export interface Book {
   rating: number
   userComment: string
   error?: string
+  cover?: string
 }
 
 export interface Notification {

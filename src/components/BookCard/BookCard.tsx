@@ -8,13 +8,13 @@ interface Props {
 }
 
 export const BookCard: React.FC<Props> = ({
-  book: { id, title, cover, author, rating, userComment },
+  book: { id, title, cover = 'https://www.marytribble.com/wp-content/uploads/2020/12/book-cover-placeholder.png', author, rating, userComment },
   className = '',
   children
 }) => {
   return (
     <li className={`book-card ${className}`} key={id}>
-      <img src="https://www.marytribble.com/wp-content/uploads/2020/12/book-cover-placeholder.png" alt="user avatar" />
+      <img src={cover} alt="user avatar" />
 
       <div>
         <h2>{title}</h2>
