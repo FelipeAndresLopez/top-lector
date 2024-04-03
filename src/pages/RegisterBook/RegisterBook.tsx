@@ -39,6 +39,7 @@ export const RegisterBook: React.FC = () => {
         type: 'success'
       })
       target.reset()
+      setStar(RATING.WORST)
     }
 
     setTimeout(() => {
@@ -99,13 +100,14 @@ export const RegisterBook: React.FC = () => {
               <small className={notification.type} >{notification.message}</small>
             }
             {isLoading && <p>Cargando...</p>}
+            <br />
             <button className='button btn-primary' type="submit">Registrar</button>
             <button
               className='button btn-secondary'
               onClick={() => { navigate(-1) }}
               type="submit"
             >
-              Cancelar
+              Volver
             </button>
           </form>
         </div>

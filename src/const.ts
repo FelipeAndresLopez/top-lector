@@ -21,7 +21,7 @@ export const MENU_ITEMS = [
   }
 ]
 
-export const BASE_URL = import.meta.env.PROD ? 'https://top-lector-api.vercel.app/api' : 'http://localhost:3001/api'
+export const BASE_URL = import.meta.env.VITE_API_URL
 
 export const RATING = {
   WORST: { value: 1, label: '😔' },

@@ -1,5 +1,5 @@
 import { BASE_URL } from '../const'
-import { type Book } from '../type'
+import { type BookId, type Book } from '../type'
 
 const BOOKS_ENDPOINT = 'books'
 
@@ -9,10 +9,14 @@ const setSessionToken: (newToken: string) => void = (newToken: string) => {
   token = newToken
 }
 
+const getSessionToken = (): string => {
+  return JSON.parse(window.localStorage.getItem('loggedUserTopLectorApp') ?? '')?.token
+}
+
 type RegisterBook = (book: Book) => Promise<Book>
 
 export const registerBook: RegisterBook = async ({ title, author, rating, userComment }) => {
-  token = JSON.parse(window.localStorage.getItem('loggedUserTopLectorApp') ?? '')?.token
+  token = getSessionToken()
   try {
     const response = await window.fetch(`${BASE_URL}/${BOOKS_ENDPOINT}`, {
       method: 'POST',
@@ -35,4 +39,22 @@ export const registerBook: RegisterBook = async ({ title, author, rating, userCo
   }
 }
 
-export const bookService = { registerBook, setSessionToken }
+type DeleteBook = ({ bookId }: { bookId: BookId }) => Promise<Book>
+
+const deleteBook: DeleteBook = async ({ bookId }) => {
+  token = getSessionToken()
+  try {
+    const response = await window.fetch(`${BASE_URL}/${BOOKS_ENDPOINT}/${String(bookId)}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    })
+    return await response.json()
+  } catch (error) {
+    throw new Error('Error deleting book')
+  }
+}
+
+export const bookService = { registerBook, deleteBook, setSessionToken }

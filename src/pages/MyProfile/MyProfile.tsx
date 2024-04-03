@@ -8,17 +8,31 @@ import userPlaceholder from '../../assets/user-placeholder.png'
 
 import './styles.css'
 import { bookService } from '../../services/books'
+import { TrashCanIcon } from '../../components/TrashCanIcon/TrashCanIcon'
+import { type BookId } from '../../type'
 
 export const MyProfile: React.FC = () => {
   const { id } = JSON.parse(localStorage.getItem('loggedUserTopLectorApp') ?? '')
   const { userInfo } = useGetUserInfo({ userId: id })
-
   const navigate = useNavigate()
 
   const handleLogout = (): void => {
     localStorage.removeItem('loggedUserTopLectorApp')
     bookService.setSessionToken('')
     navigate(MENU_PATHS.HOME)
+  }
+
+  const handleDeleteBook = async (bookId: BookId): Promise<void> => {
+    console.log(bookId)
+
+    try {
+      const response = await bookService.deleteBook({ bookId })
+      if (response.error !== undefined) {
+        console.log(response.error)
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -41,8 +55,9 @@ export const MyProfile: React.FC = () => {
             <button
               className='icon-button'
               type='button'
+              onClick={async () => { await handleDeleteBook(book.id) }}
             >
-              🗑️
+              <TrashCanIcon className='my-profile__trash-icon' />
             </button>
           </BookCard>
         )}

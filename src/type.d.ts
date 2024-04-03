@@ -33,6 +33,8 @@ export interface Book {
   cover?: string
 }
 
+export type BookId = Book.id
+
 export interface Notification {
   message: string
   type: string

@@ -24,3 +24,7 @@
 .my-profile ul {
   padding: 0;
 }
+
+.my-profile__trash-icon {
+  fill: var(--secondary-color);
+}
