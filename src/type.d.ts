@@ -14,6 +14,8 @@ export interface UserCredentials {
 }
 
 export type UserId = User.id
+export type UserPhoto = User.photo
+export type UserName = User.name
 
 export interface UserSession {
   token: string

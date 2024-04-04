@@ -1,25 +1,22 @@
 import { Link } from 'react-router-dom'
+import { UserAvatar } from '../UserAvatar/UserAvatar'
 import { type User } from '../../type'
 import './styles.css'
 
 interface Props {
-  reader: User
+  user: User
   className?: string
 }
 
-export const TopCard: React.FC<Props> = ({
-  reader: { id, name, photo, books },
+export const UserCard: React.FC<Props> = ({
+  user: { id, name, photo, books },
   className = ''
 }) => {
   const latestReadBook = books[books.length - 1]
   return (
     <Link to={`/${id}`}>
-      <li className={`top-card ${className}`} key={id}>
-        {
-          photo !== ''
-            ? <img src={photo} alt="user photo" />
-            : <span className='avatar-placeholder' >{name[0]}</span>
-        }
+      <li className={`user-card ${className}`} key={id}>
+        <UserAvatar photo={photo} name={name} />
         <div>
           <h2>{name}</h2>
           <p>Leidos: <strong>{books.length}</strong></p>

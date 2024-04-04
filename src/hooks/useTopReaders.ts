@@ -1,24 +1,30 @@
 import { useEffect, useState } from 'react'
 import { userService } from '../services/users'
-import { type User } from '../type'
+import { type UserId, type User } from '../type'
 
-export const useGetTopReaders = (): { topReaders: User[] } => {
-  const [topReaders, setTopReaders] = useState<User[]>([])
+type GetUsers = () => { users: User[] }
+export const useGetUsers: GetUsers = () => {
+  const [users, setUsers] = useState<User[]>([])
 
   useEffect(() => {
     userService.getUsers()
       .then((data: User[]) => {
-        setTopReaders(data)
+        setUsers(data)
       })
       .catch(error => {
         throw new Error(`Error getting top readers ${error}`)
       })
   }, [])
 
-  return { topReaders }
+  return { users }
 }
 
-export const useGetUserInfo = ({ userId }: { userId: string }): { userInfo: User } => {
+type GetUserById = ({ userId }: { userId: UserId }) => {
+  userInfo: User
+  setUserInfo: React.Dispatch<React.SetStateAction<User>>
+}
+
+export const useGetUserInfo: GetUserById = ({ userId }) => {
   const [userInfo, setUserInfo] = useState<User>({
     id: 0,
     name: '',
@@ -38,5 +44,5 @@ export const useGetUserInfo = ({ userId }: { userId: string }): { userInfo: User
       })
   }, [])
 
-  return { userInfo }
+  return { userInfo, setUserInfo }
 }

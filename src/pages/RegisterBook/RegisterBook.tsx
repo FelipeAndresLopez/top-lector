@@ -18,7 +18,6 @@ export const RegisterBook: React.FC = () => {
     const target = event.target as HTMLFormElement
     const formData = new FormData(target)
     const bookData = Object.fromEntries(formData)
-    console.log(bookData)
 
     const book: Book = {
       title: bookData.title as string,
@@ -39,7 +38,7 @@ export const RegisterBook: React.FC = () => {
         type: 'success'
       })
       target.reset()
-      setStar(RATING.WORST)
+      setStar(RATING.NORMAL)
     }
 
     setTimeout(() => {

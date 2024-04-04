@@ -16,9 +16,9 @@
   --secondary-light-color: #ff6333;
   --secondary-dark-color: #b22a00;
 
-  --neutral-color: #546E7A;
-  --neutral-light-color: #78909C;
-  --border-color: #B0BEC5;
+  --neutral-dark-color: #546E7A;
+  --neutral-color: #B0BEC5;
+  --neutral-light-color: #f9f9f9;
 }
 
 html {
@@ -41,7 +41,7 @@ h1 {
 
 h2 {
   margin: 0;
-  color: var(--neutral-color);
+  color: var(--neutral-dark-color);
   font-weight: normal;
   line-height: normal;
 }
@@ -61,7 +61,7 @@ form input:not([type="range"]),
 textarea {
   padding: 10px;
   width: -webkit-fill-available;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--neutral-dark-color);
   border-radius: 5px;
 }
 
@@ -91,13 +91,13 @@ button.button {
 
 
   &.btn-secondary {
-    background-color: var(--border-color);
-    border: 1px solid var(--border-color);
+    background-color: var(--neutral-dark-color);
+    border: 1px solid var(--neutral-dark-color);
     color: white;
 
     &:hover {
-      background-color: var(--neutral-light-color);
-      border: 1px solid var(--neutral-light-color);
+      background-color: var(--neutral-color);
+      border: 1px solid var(--neutral-color);
     }
   }
 }
@@ -118,11 +118,13 @@ button.button {
 }
 
 p {
+  color: var(--neutral-dark-color);
+  font-size: medium;
   margin: 0;
 }
 
 p strong {
-  color: var(--neutral-color);
+  color: var(--neutral-dark-color);
 }
 
 a {
@@ -142,7 +144,7 @@ a {
 }
 
 .icon-button {
-  padding: 0.5rem 1rem;
+  padding: 0;
   background-color: transparent;
   color: var(--primary-color);
   border: 1px solid transparent;
@@ -156,6 +158,8 @@ a {
 }
 
 .float-button {
+  display: block;
+  float: inline-end;
   position: sticky;
   bottom: 20px;
   right: 20px;
@@ -166,7 +170,6 @@ a {
   color: white;
   border: none;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-  align-self: flex-end;
   text-align: center;
   line-height: 50px;
 }

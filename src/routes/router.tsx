@@ -4,7 +4,7 @@ import { NotFound } from '../pages/NotFound/NotFound.tsx'
 import { Home } from '../pages/Home/Home.tsx'
 import { Login } from '../pages/Login/Login.tsx'
 import { RegisterUser } from '../pages/RegisterUser/RegisterUser.tsx'
-import { TopReaderDetail } from '../pages/TopReaderDetail/TopReaderDetail.tsx'
+import { UserDetail } from '../pages/UserDetail/UserDetail.tsx'
 import { MyProfile } from '../pages/MyProfile/MyProfile.tsx'
 import { PrivateRoute } from '../components/PrivateRoute/PrivateRoute.tsx'
 import { RegisterBook } from '../pages/RegisterBook/RegisterBook.tsx'
@@ -22,7 +22,7 @@ export const router = createHashRouter([
       },
       {
         path: '/:id',
-        element: <TopReaderDetail />
+        element: <UserDetail />
 
       },
       {

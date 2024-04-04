@@ -1,5 +1,6 @@
 import { type Book } from '../../type'
 import './styles.css'
+import bookPlaceholder from '../../assets/book-placeholder.png'
 
 interface Props {
   book: Book
@@ -8,21 +9,28 @@ interface Props {
 }
 
 export const BookCard: React.FC<Props> = ({
-  book: { id, title, cover = 'https://www.marytribble.com/wp-content/uploads/2020/12/book-cover-placeholder.png', author, rating, userComment },
+  book: { id, title, author, rating, userComment },
   className = '',
   children
 }) => {
   return (
     <li className={`book-card ${className}`} key={id}>
-      <img src={cover} alt="user avatar" />
 
-      <div>
-        <h2>{title}</h2>
-        <p>{author}</p>
-        <small>{'★'.repeat(rating)}</small>
-        <p>{userComment}</p>
+      <div className='book-card__content'>
+        <div className='book-card__header'>
+          <img src={bookPlaceholder} alt="user avatar" />
+          <div>
+            <h2>{title}</h2>
+            <p>{author}</p>
+            <small>{'★'.repeat(rating)}</small>
+
+          </div>
+          {children}
+        </div>
+        <div className='book-card__body'>
+          <p>{userComment}</p>
+        </div>
       </div>
-      {children}
     </li>
   )
 }

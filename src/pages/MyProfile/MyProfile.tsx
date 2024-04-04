@@ -1,19 +1,27 @@
+// external
 import { Link, useNavigate } from 'react-router-dom'
-import { Container } from '../../components/Container/Container'
-import { MENU_PATHS } from '../../const'
+
+// hooks
 import { useGetUserInfo } from '../../hooks/useTopReaders'
-import { BookCard } from '../../components/BookCard/BookCard'
 
-import userPlaceholder from '../../assets/user-placeholder.png'
-
-import './styles.css'
+// services
 import { bookService } from '../../services/books'
-import { TrashCanIcon } from '../../components/TrashCanIcon/TrashCanIcon'
+
+// components
+import { Container } from '../../components/Container/Container'
+import { BookList } from '../../components/BookList/BookList'
+import { UserAvatar } from '../../components/UserAvatar/UserAvatar'
+
+// constants and types
+import { MENU_PATHS } from '../../const'
 import { type BookId } from '../../type'
+
+// styles
+import './styles.css'
 
 export const MyProfile: React.FC = () => {
   const { id } = JSON.parse(localStorage.getItem('loggedUserTopLectorApp') ?? '')
-  const { userInfo } = useGetUserInfo({ userId: id })
+  const { userInfo, setUserInfo } = useGetUserInfo({ userId: id })
   const navigate = useNavigate()
 
   const handleLogout = (): void => {
@@ -23,10 +31,10 @@ export const MyProfile: React.FC = () => {
   }
 
   const handleDeleteBook = async (bookId: BookId): Promise<void> => {
-    console.log(bookId)
-
     try {
       const response = await bookService.deleteBook({ bookId })
+      userInfo.books = userInfo.books.filter(book => book.id !== bookId)
+      setUserInfo({ ...userInfo })
       if (response.error !== undefined) {
         console.log(response.error)
       }
@@ -37,36 +45,24 @@ export const MyProfile: React.FC = () => {
 
   return (
     <Container className='my-profile'>
-      <div className='my-profile'>
-        <img
-          src={userInfo.photo !== '' ? userInfo.photo : userPlaceholder}
-          alt="user avatar"
-        />
-        <h1>{userInfo.name}</h1>
+      <div className='my-profile__header'>
         <button className='link-button' type='button' onClick={handleLogout}>Cerrar sesión</button>
       </div>
-      <h2>Mis Libros</h2>
-      <ul className=''>
-        {userInfo.books.map(book =>
-          <BookCard
-            key={book.id}
-            book={book}
-          >
-            <button
-              className='icon-button'
-              type='button'
-              onClick={async () => { await handleDeleteBook(book.id) }}
-            >
-              <TrashCanIcon className='my-profile__trash-icon' />
-            </button>
-          </BookCard>
-        )}
-      </ul>
-
+      <div className='user-profile'>
+        <UserAvatar photo={userInfo.photo} name={userInfo.name} />
+        <div className='user-profile__info'>
+          <h1 className='user-profile__name'>{userInfo.name}</h1>
+        </div>
+      </div>
+      <h1 className='my-profile__title'>Mis Libros</h1>
+      <BookList
+        books={userInfo.books}
+        onDeleteBook={handleDeleteBook}
+        hasDeleteButton
+      />
       <Link className='float-button' to={MENU_PATHS.REGISTER_BOOK}>
         +
       </Link>
-
     </Container>
   )
 }
