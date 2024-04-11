@@ -12,15 +12,16 @@ import { Container } from '../../components/Container/Container'
 import { BookList } from '../../components/BookList/BookList'
 import { UserAvatar } from '../../components/UserAvatar/UserAvatar'
 
-// constants and types
+// constants and types and utils
 import { MENU_PATHS } from '../../const'
 import { type BookId } from '../../type'
+import { getUserSessionInfo } from '../../utils'
 
 // styles
 import './styles.css'
 
 export const MyProfile: React.FC = () => {
-  const { id } = JSON.parse(localStorage.getItem('loggedUserTopLectorApp') ?? '')
+  const { id } = getUserSessionInfo()
   const { userInfo, setUserInfo } = useGetUserInfo({ userId: id })
   const navigate = useNavigate()
 

@@ -1,5 +1,6 @@
 import { BASE_URL } from '../const'
 import { type BookId, type Book } from '../type'
+import { getUserSessionInfo } from '../utils'
 
 const BOOKS_ENDPOINT = 'books'
 
@@ -10,7 +11,7 @@ const setSessionToken: (newToken: string) => void = (newToken: string) => {
 }
 
 const getSessionToken = (): string => {
-  return JSON.parse(window.localStorage.getItem('loggedUserTopLectorApp') ?? '')?.token
+  return getUserSessionInfo()?.token
 }
 
 type RegisterBook = (book: Book) => Promise<Book>
