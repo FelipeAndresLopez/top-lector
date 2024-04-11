@@ -37,5 +37,11 @@ module.exports = {
         "checksVoidReturn": false
       }
     ]
-  }
+  },
+  "ignorePatterns": [
+    "*.d.ts",
+    "*.config.*",
+    ".eslintrc.cjs",
+    "cypress/**"
+  ]
 }
